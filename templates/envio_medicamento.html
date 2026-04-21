@@ -1,0 +1,96 @@
+
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Envio</title>
+    <link rel="stylesheet" href="../static/css/envio_medicamento.css">
+    <link rel="icon" href="../static/imagenes/icono-pestaña.png" type="image/png">
+
+    <!--Infografia:-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+
+<header>
+        <nav id="presentacion">
+            <img src="../static/imagenes/header-icon.png" alt="" id = "icon-header">
+            <a href="{{ url_for('catalogo') }}" target="_self" id = "titulo-header"><h2>Catalogo virtual EPS</h2></a>
+        </nav>
+</header>
+
+
+<main>
+
+    <h1 class="titulo"> Selecciona una fecha para tu {{ medicamento }} </h1>
+
+    <form action="{{ url_for('guardar_solicitud') }}" method="POST">
+
+        <!-- Datos ocultos que vienen desde el medicamento -->
+        <input type="hidden" name="medicamento" value="{{ medicamento }}">
+        <input type="hidden" name="tipo_entrega" value="{{ tipo_entrega }}">
+
+        <section class="opciones">
+
+            <label class="opcion">
+                <input type="radio" name="fecha_entrega" value="12 Junio" required>
+                12 Junio
+            </label>
+
+            <label class="opcion">
+                <input type="radio" name="fecha_entrega" value="14 Junio">
+                14 Junio
+            </label>
+
+            <label class="opcion">
+                <input type="radio" name="fecha_entrega" value="17 Junio">
+                17 Junio
+            </label>
+
+            <label class="opcion">
+                <input type="radio" name="fecha_entrega" value="20 Junio">
+                20 Junio
+            </label>
+
+        </section>
+
+        <button type="submit" class="boton">
+            Confirmar
+        </button>
+
+    </form>
+
+    {% if mensaje %}
+        <div id="mensaje" class="mensaje">
+            {{ mensaje }}
+        </div>
+    {% endif %}
+
+
+</main>
+
+<script>
+const opciones = document.querySelectorAll(".opcion");
+
+opciones.forEach(opcion => {
+    opcion.addEventListener("click", function () {
+
+        opciones.forEach(o => o.classList.remove("seleccionada"));
+        this.classList.add("seleccionada");
+
+        // marcar el radio automáticamente
+        this.querySelector("input").checked = true;
+    });
+});
+</script>
+
+</body>
+
+
+
+</html>

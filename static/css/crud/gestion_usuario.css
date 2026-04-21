@@ -1,0 +1,396 @@
+/*ENCABEZADO Y CUERPO.*/
+
+body{
+    background-color: #ffffff;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    background-color: #074f78;
+    width: 100%;
+    height: 80px;
+    overflow: hidden;
+    border-radius: 10px;
+    position: fixed;
+    top: 0;    /* Pegado arriba */
+    left: 0;   /* Pegado a la izquierda */
+    z-index: 1000;   /* Encima de otros elementos */
+}
+
+.presentacion{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 40px;
+    margin-left: 40px;
+    gap: 20px;
+    color: #ffffff;
+    text-shadow: 1px 1px #000000;
+
+}
+
+#usuario {
+    color: #ffffff;
+    font-size: 22px;
+    text-decoration: none;
+    text-shadow: 1px 1px #000000;
+    font-family: 'Fira sans', sans-serif;
+}
+
+.icon-header {
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    box-shadow: 1px 1px 10px 1px #ffffff;
+    transition: box-shadow 0.8s ease;
+}
+
+.icon-header:hover{
+    box-shadow: 1px 1px 10px 1px #000000;
+}
+
+#titulo-header {
+    text-shadow: 2px 2px #000000;
+    font-family: "Fira sans", sans-serif;
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 23px;
+    font-weight:bold
+}
+/*Parte principal*/
+
+main{
+    background-color: #074f78;
+    margin-top: 180px;
+    margin-left: 300px;
+    margin-right: 300px;
+    height: auto;
+    padding: 35px;
+    text-align: center;
+    border-radius: 20px;
+}
+
+#contenedor-perfil {
+    display: flex;
+    gap: 30px;
+    margin-left: 25px;
+}
+
+#contenedor-nombre {
+    padding: 15px;
+}
+
+#contenedor-informacion {
+    display: flex;
+    justify-content: space-around;
+}
+
+#icon-login{
+    width: 100px;
+    height: 100px;
+    border-radius: 100%;
+    box-shadow: 1px 1px 10px 1px #b0b0b0;
+    margin-top: 50px;
+    transition: all 0.8s ease;
+}
+
+#icon-login:hover{
+    width: 120px;
+    height: 120px;
+    box-shadow: 1px 1px 10px 1px #000000;
+}
+
+#tu-informacion {
+    color: rgba(255, 249, 249, 0.858);
+    font-size: 18px;
+}
+
+#nombre {
+    font-size: 40px;
+    background-color: #074f78;
+    border: none;
+    color: rgba(255, 249, 249, 0.858); 
+    font-family: "Fira sans", sans-serif;
+    margin-top: 0px;
+    text-shadow: 2px 2px #000000;
+}
+
+p {
+    font-size: 24px;
+    color: #fff9f9db; 
+    font-family: "Fira sans", sans-serif;
+    padding-top: 10px;
+    margin-bottom: 5px;
+    text-shadow: 1px 1px #000000;
+}
+
+
+
+
+.ingresar_datos_campo {
+    color: #074f78;
+    text-shadow: 1px 1px #074f78;
+    font-size: 25px;
+    text-align: center;
+    border: #c3c3c3;
+    border-radius: 10px;
+    height: 35px;
+    width: 80%;
+    transition: all 0.8s ease;
+}
+
+.mensaje_error{
+    height:30px;
+    color:#E63946;
+    font-size:18px;
+    text-align:center;
+    margin-top:10px;
+    font-family:"Fira Sans", sans-serif;
+}
+
+.mensaje_estado{
+    height:30px;
+    color:#52B788;
+    font-size:18px;
+    text-align:center;
+    margin-top:10px;
+    font-family:"Fira Sans", sans-serif;
+}
+
+#mensaje-confirmacion{
+    text-align:center;
+    font-size:16px;
+    margin-bottom:10px;
+    font-family:"Fira Sans", sans-serif;
+}
+
+.ingresar_datos_campo:hover, .ingresar_datos_campo:focus{
+    color: #074f78;
+    text-shadow: 1px 1px #074f78;
+    box-shadow: 1px 1px 20px 1px #f5f5f5;
+    height: 40px;
+    width: 85%;
+}
+
+
+input::placeholder {
+    color: #888;       
+    font-style: italic; 
+    opacity: 1;        
+}
+
+#contenedor-mensajes {
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-around;
+}
+
+
+.contenedor-botones {
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#boton-actualizar {
+    color: #ffffff;
+    font-size: 25px;
+    font-family: "Fira sans", sans-serif;
+    background-color: #52B788;
+    border: #074f78;
+    border-radius: 10px;
+    height: 40px;
+    transition: all 0.8s ease;
+}
+
+#boton-actualizar:hover {
+    color: #52B788;
+    font-size: 30px;
+    background-color: #ffffff;
+    border: #52B788;
+    height: 45px;
+    border: solid #52B788;
+    box-shadow: 1px 1px 10px 1px #52B788;
+}
+
+
+#boton-eliminar {
+    color: #ffffff;
+    font-size: 25px;
+    font-family: "Fira sans", sans-serif;
+    background-color: #E63946;
+    border: #074f78;
+    border-radius: 10px;
+    height: 40px;
+
+    transition: all 0.8s ease;
+}
+
+#boton-eliminar:hover {
+    color: #E63946;
+    font-size: 30px;
+    background-color: #ffffff;
+    border: #E63946;
+    height: 45px;
+    border: solid #E63946;
+    box-shadow: 1px 1px 10px 1px #E63946;
+}
+
+/* Solicitudes */
+#titulo-solicitudes { font-size: 30px; color: rgba(255, 249, 249, 0.858); font-family: "Fira sans", sans-serif; padding-top: 10px; margin-bottom: 5px; text-shadow: 1px 1px #000000; } 
+
+#contenedor-solicitudes { border-radius: 20px; background-color: #053957; padding: 10px; margin-top: 35px; text-align: left; }
+
+.grid-solicitudes {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-top: 10px;
+}
+
+/* CARD */
+.card-solicitud {
+    background-color: #074f78;
+    border-radius: 15px;
+    padding: 15px;
+    color: #f5f5f5;
+    font-family: "Fira Sans", sans-serif;
+    box-shadow: 2px 2px 8px rgba(0,0,0,0.4);
+    transition: transform 0.2s ease;
+}
+
+.card-solicitud:hover {
+    transform: scale(1.03);
+}
+
+/* NOMBRE MEDICAMENTO */
+.nombre-medicamento {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #52B788;
+}
+
+/* TEXTO VACÍO */
+.sin-solicitudes {
+    width: 100%;
+    text-align: center;
+    font-size: 28px;
+    color: #f5f5f5;
+    padding: 40px 0;
+    font-family: "Fira Sans", sans-serif;
+}
+
+
+
+/* ============================ */
+/*         RESPONSIVE           */
+/* ============================ */
+
+
+/* TABLETS */
+@media (max-width:1024px){
+
+    main{
+        margin-left:80px;
+        margin-right:80px;
+        height:auto;
+        padding:30px;
+    }
+
+    h1{
+        font-size:30px;
+    }
+
+    #ingresar_datos_campo{
+        width:70%;
+    }
+
+    #boton-enviar{
+        width:40%;
+    }
+
+}
+
+
+/* CELULARES */
+@media (max-width:768px){
+
+    header{
+        height:70px;
+    }
+
+    #icon-header{
+        width:45px;
+        height:45px;
+    }
+
+    #titulo-header{
+        font-size:20px;
+    }
+
+    main{
+        margin-left:20px;
+        margin-right:20px;
+        margin-top:120px;
+        padding:25px;
+        border-radius:15px;
+    }
+
+    #icon-login{
+        width:80px;
+        height:80px;
+        margin-top:20px;
+    }
+
+    h1{
+        font-size:24px;
+        margin-top:20px;
+    }
+
+    p{
+        font-size:18px;
+        margin-top:30px;
+    }
+
+    #ingresar_datos_campo{
+        width:90%;
+        font-size:20px;
+    }
+
+    #ingresar_datos_campo:hover{
+        width:95%;
+        font-size:22px;
+    }
+
+    #boton-enviar{
+        width:70%;
+        font-size:22px;
+    }
+
+}
+
+
+/* MOVILES PEQUEÑOS */
+@media (max-width:480px){
+
+    main{
+        margin-left:10px;
+        margin-right:10px;
+        padding:20px;
+    }
+
+    h1{
+        font-size:20px;
+    }
+
+    p{
+        font-size:16px;
+    }
+
+    #boton-enviar{
+        width:90%;
+        font-size:20px;
+    }
+
+}
