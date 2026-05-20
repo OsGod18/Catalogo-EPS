@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Empleado</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/empleados-css/crud/create_employ.css') }}">
+
+    <link rel="icon" href="{{ url_for('static', filename='imagenes/favicon-empleado.png') }}" type="image/png">
+    
+    <!--Infografia:-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+<header>
+
+    <nav id="presentacion">
+
+        <img src="{{ url_for('static', filename='imagenes/header-icon-empleado.png') }}" alt="" id="icon-header">
+
+        <a id="titulo-header" href="{{ url_for('empleados.login_employ') }}" target="_self">Regresar</a>
+
+    </nav>
+
+</header>
+
+<main>
+
+    <h1>Crea tu identidad</h1>
+
+    <br>
+
+    <p>Ingresa algunos datos como cliente y crea una nueva contraseña para tu identidad de "Empleado"...</p>
+
+    <form action="{{ url_for('empleados.crear_employ') }}" method="POST">
+
+    <section id="contenedor-flex">
+
+        <section class="contenedor-grupo">
+            
+            <section class="contenedor-input">
+
+                <p>Documento</p>
+
+                <input type="text" name="documento" placeholder="Ingresa tu documento" required minlength="6" maxlength="10" inputmode="numeric" value="{{ request.form.documento or '' }}" id="ingresar_datos_campo">
+
+            </section>
+            
+            <section class="contenedor-input">
+
+                <p>Contraseña</p>
+
+                <input type="password" name="contrasena" placeholder="Ingresa tu contraseña" required minlength="4" maxlength="10" value="{{ request.form.contrasena or '' }}" id="ingresar_datos_campo">
+
+            </section>
+
+        </section>
+
+        <section class="contenedor-grupo">
+
+            <section class="contenedor-input">
+
+                <p>Telefono</p>
+
+                <input type="text" name="telefono" placeholder="Ingresa tu telefono" required minlength="10" maxlength="10" inputmode="numeric" value="{{ request.form.telefono or '' }}" id="ingresar_datos_campo">
+
+            </section>
+
+            <section class="contenedor-input">
+
+                <p>Email</p>
+
+                <input type="text" name="email" placeholder="Ingresa tu email" required minlength="10" value="{{ request.form.email or '' }}" id="ingresar_datos_campo">
+
+            </section>
+
+        </section>
+
+    </section>
+
+    <br><br>
+
+    <section class="contenedor-input">
+
+        <p>PIN confirmacion de <strong>cliente</strong></p>
+
+        <input type="password" name="pin" placeholder="Ingresa tu PIN" required minlength="4" maxlength="4" inputmode="numeric" id="ingresar_datos_campo">
+
+    </section>
+
+    <br><br>
+
+    {% if id_generado %}
+        <p>Tu nuevo ID como empleado: <strong>{{ id_generado }}</strong></p>
+    {% endif %}
+
+    <br><br>
+
+    <p class="mensaje_error">{{ error }}</p>
+
+    <input type="submit" value="Crear identidad" id="boton-enviar">
+
+    </form>
+
+</main>
+
+</body>
+</html>

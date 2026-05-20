@@ -1,0 +1,235 @@
+
+:root{
+    --btn-usuario: #074f78;
+    --btn-cliente: #600392;
+    --btn-empleado: #2E8F01;
+    --card-bg: #ffffff;
+    --text-color: #222;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    font-family: "Fira sans", sans-serif;
+    color: var(--text-color);
+    background: linear-gradient(135deg, #eef2f6 0%, #222222 100%);
+
+}
+
+header {
+    background-color: #222222;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#titulo-header {
+    color: #ffffff;
+    font-size: 28px;
+    font-weight: bold;
+    text-shadow: 2px 2px #ffffff5a;
+}
+
+#presentacion {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+#icon-header {
+    width: 60px;
+    height: 60px;
+    border-radius: 100%;
+    box-shadow: 1px 1px 10px 1px #ffffff;
+    transition: box-shadow 0.8s ease;
+}
+
+#icon-header:hover{
+    box-shadow: 1px 1px 10px 1px #000000;
+}
+
+main {
+    display:flex; 
+    align-items:center; 
+    justify-content:center; 
+    height: calc(100% - 80px); 
+}
+
+#icon-login {
+    width: 100px;
+    height: 100px;
+    border-radius: 100%;
+    box-shadow: 1px 1px 10px 1px #b0b0b0;
+    margin-top: 50px;
+    transition: all 0.8s ease;
+}
+
+#icon-login:hover{
+    width: 120px;
+    height: 120px;
+    box-shadow: 1px 1px 10px 1px #000000;
+}
+
+
+
+.hero { width:100%; display:flex; align-items:center; justify-content:center; padding:24px; }
+
+.card{
+    width: min(880px, 96%);
+    background-color: #222222;
+    border-radius: 12px;
+    box-shadow: 0 0 30px 5px #464646;
+    padding: 28px;
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+    align-items:center;
+}
+
+.card-header{ 
+    text-align:center; 
+}
+.card-logo{
+    width:72px; height:72px; margin-bottom:8px; 
+}
+.card-header h1 { 
+    margin:0; 
+    font-size:32px; 
+}
+.card-header .lead{
+    margin:6px 0 0; 
+    font-size: 22px;
+    color:#ffffff; 
+}
+
+.card-body{
+    margin-top: 40px;
+    margin-bottom: 40px;
+    display:flex;
+    gap:30px;
+    width:100%;
+    justify-content:center;
+    flex-wrap:wrap; 
+}
+
+.btn{
+    display:inline-block;
+    text-decoration:none;
+    color:#fff;
+    padding:16px 34px;
+    border-radius:10px;
+    font-size:22px;
+    font-weight:600;
+    box-shadow: 0 6px 18px rgba(2,6,23,0.08);
+    transition: transform .15s ease, box-shadow .15s ease;
+}
+.btn:active{ transform: translateY(1px); }
+
+.btn-usuario{ background: var(--btn-usuario); }
+.btn-cliente{ background: var(--btn-cliente); }
+.btn-empleado{ background: var(--btn-empleado); }
+
+.btn-usuario:hover{ box-shadow: 0 10px 24px rgba(7, 79, 120, 0.833); transform: translateY(-3px); }
+.btn-cliente:hover{ box-shadow: 0 10px 24px rgba(96, 3, 146, 0.849); transform: translateY(-3px); }
+.btn-empleado:hover{ box-shadow: 0 10px 24px rgba(46, 143, 1, 0.848); transform: translateY(-3px); }
+
+.card-footer{
+    color:#d8d8d8; 
+    font-size:18px; 
+}
+
+/* --- RESPONSIVE DESIGN --- */
+
+/* Ajustes para Tablets y Pantallas Medianas (Menos de 768px) */
+@media (max-width: 768px) {
+    header {
+        height: auto;
+        padding: 15px 10px;
+    }
+
+    #presentacion {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    #icon-header {
+        width: 50px;
+        height: 50px;
+    }
+
+    #titulo-header {
+        font-size: 22px;
+        text-align: center;
+    }
+
+    main {
+        height: auto;
+        min-height: calc(100% - 80px);
+        padding: 20px 0;
+    }
+
+    #icon-login {
+        width: 80px;
+        height: 80px;
+        margin-top: 25px;
+    }
+
+    #icon-login:hover {
+        width: 90px;
+        height: 90px;
+    }
+
+    .card {
+        padding: 20px;
+        gap: 12px;
+    }
+
+    .card-header h1 {
+        font-size: 26px;
+    }
+
+    .card-header .lead {
+        font-size: 18px;
+    }
+
+    .card-body {
+        margin-top: 25px;
+        margin-bottom: 25px;
+        gap: 20px;
+    }
+
+    .btn {
+        width: 80%;
+        text-align: center;
+        font-size: 18px;
+        padding: 14px 20px;
+        box-sizing: border-box;
+    }
+}
+
+/* Ajustes para Celulares Pequeños (Menos de 480px) */
+@media (max-width: 480px) {
+    #titulo-header {
+        font-size: 18px;
+    }
+
+    .card-header h1 {
+        font-size: 22px;
+    }
+
+    .card-header .lead {
+        font-size: 16px;
+    }
+
+    .btn {
+        width: 100%;
+        font-size: 16px;
+        padding: 12px 15px;
+    }
+
+    .card-footer {
+        font-size: 14px;
+        text-align: center;
+    }
+}

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Envio</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/empleados-css/envio_medicamento_employ.css') }}">
+
+    <link rel="icon" href="{{ url_for('static', filename='imagenes/favicon-empleado.png') }}" type="image/png">
+
+    <!-- INFOGRAFIA -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+<header>
+
+    <nav id="presentacion">
+        <img src="{{ url_for('static', filename='imagenes/header-icon-empleado.png') }}" id="icon-header">
+
+        <a href="{{ url_for('empleados.catalogo_employ') }}" id="titulo-header"> <h2>Catalogo virtual EPS</h2> </a>
+    </nav>
+
+</header>
+
+<main>
+
+    <h1 class="titulo"> Modificar fechas globales </h1>
+
+    <section class="opciones">
+
+        {% for fecha in fechas_activas %}
+
+        <button type="button" class="opcion boton-fecha-activa" data-fecha-id="{{ fecha.id }}" data-fecha="{{ fecha.fecha }}">
+            Fecha {{ loop.index }}: {{ fecha.fecha }}
+        </button>
+
+        {% endfor %}
+
+    </section>
+
+    <div id="modal" class="modal oculto">
+        <div class="modal-contenido">
+            <h2>Selecciona una nueva fecha</h2>
+
+            <form action="{{ url_for('empleados.envio_medicamento_employ') }}" method="POST" id="form-actualizar-fecha">
+
+                <input type="hidden" name="fecha_id" id="fecha_id">
+
+                <label for="fecha_nueva">Nueva fecha</label>
+                <select name="fecha_nueva" id="fecha_nueva" required>
+                    {% for opcion in todas_fechas %}
+                        <option value="{{ opcion.fecha }}">{{ opcion.fecha }}</option>
+                    {% endfor %}
+                </select>
+
+                <div class="botones-modal">
+                    <button type="submit" class="boton"> Actualizar fechas </button>
+                    <button type="button" class="boton cancelar" id="cerrar-modal"> Cancelar </button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+    {% if mensaje %}
+
+        <div class="mensaje"> {{ mensaje }} </div>
+
+    {% endif %}
+
+    {% if error %}
+
+        <div class="mensaje-error"> {{ error }} </div>
+
+    {% endif %}
+
+</main>
+
+<style>
+    .modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.45);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        z-index: 1000;
+    }
+
+    .oculto {
+        display: none;
+    }
+
+    .modal-contenido {
+        background: #2c2d2c;
+        border-radius: 12px;
+        padding: 24px;
+        width: min(480px, 100%);
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
+    }
+
+    .modal-contenido h2 {
+        margin-bottom: 16px;
+        font-size: 1.35rem;
+        font-family: "Fira Sans", sans-serif;
+    }
+
+    .modal-contenido label,
+    .modal-contenido select {
+        display: block;
+        width: 100%;
+        margin-bottom: 16px;
+    }
+
+    .modal-contenido select {
+        padding: 10px 14px;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+        background: #fff;
+    }
+
+    .botones-modal {
+        display: flex;
+        gap: 12px;
+        justify-content: flex-end;
+        flex-wrap: wrap;
+    }
+
+    .boton.cancelar {
+        background: #888;
+    }
+</style>
+
+<script>
+
+const botonesFecha = document.querySelectorAll('.boton-fecha-activa');
+const modal = document.getElementById('modal');
+const fechaIdInput = document.getElementById('fecha_id');
+const fechaNuevaSelect = document.getElementById('fecha_nueva');
+const cerrarModal = document.getElementById('cerrar-modal');
+
+botonesFecha.forEach(boton => {
+    boton.addEventListener('click', () => {
+        const fechaId = boton.dataset.fechaId;
+        const fechaActual = boton.dataset.fecha;
+
+        fechaIdInput.value = fechaId;
+        fechaNuevaSelect.value = fechaActual;
+
+        modal.classList.remove('oculto');
+    });
+});
+
+cerrarModal.addEventListener('click', () => {
+    modal.classList.add('oculto');
+});
+
+modal.addEventListener('click', (event) => {
+    if (event.target === modal) {
+        modal.classList.add('oculto');
+    }
+});
+
+</script>
+
+</body>
+</html>

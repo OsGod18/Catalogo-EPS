@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>
+        Crear Usuario
+    </title>
+
+    <!-- CSS -->
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/usuarios-css/crud/create_user.css') }}"
+    >
+
+    <!-- FAVICON -->
+    <link
+        rel="icon"
+        href="{{ url_for('static', filename='imagenes/favicon.png') }}"
+        type="image/png"
+    >
+
+    <!-- FUENTES -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet"
+    >
+
+</head>
+
+<body>
+
+<header>
+
+    <nav id="presentacion">
+
+        <img
+            src="{{ url_for('static', filename='imagenes/header-icon.png') }}"
+            id="icon-header"
+        >
+
+        <a
+            id="titulo-header"
+            href="{{ url_for('usuarios.login_user') }}"
+        >
+            Regresar
+        </a>
+
+    </nav>
+
+</header>
+
+<main>
+
+    <h1>
+        Crea tu usuario
+    </h1>
+
+    <br>
+
+    <form action="{{ url_for('usuarios.crear_user') }}" method="POST">
+
+        <section id="contenedor-flex">
+
+            <!-- COLUMNA -->
+            <section class="contenedor-grupo">
+
+                <section class="contenedor-input">
+
+                    <p>Documento</p>
+
+                    <input
+                        type="text"
+                        name="documento"
+                        placeholder="Ingresa tu documento"
+                        required
+                        minlength="6"
+                        maxlength="10"
+                        inputmode="numeric"
+                        value="{{ request.form.documento or '' }}"
+                        id="ingresar_datos_campo"
+                    >
+
+                </section>
+
+                <section class="contenedor-input">
+
+                    <p>Nombre</p>
+
+                    <input
+                        type="text"
+                        name="nombre"
+                        placeholder="Ingresa tu nombre"
+                        required
+                        minlength="3"
+                        value="{{ request.form.nombre or '' }}"
+                        id="ingresar_datos_campo"
+                    >
+
+                </section>
+
+                <section class="contenedor-input">
+
+                    <p>PIN</p>
+
+                    <input
+                        type="text"
+                        name="pin"
+                        placeholder="Ingresa tu PIN"
+                        required
+                        minlength="4"
+                        maxlength="4"
+                        inputmode="numeric"
+                        value="{{ request.form.pin or '' }}"
+                        id="ingresar_datos_campo"
+                    >
+
+                </section>
+
+            </section>
+
+            <!-- COLUMNA -->
+            <section class="contenedor-grupo">
+
+                <section class="contenedor-input">
+
+                    <p>Telefono</p>
+
+                    <input
+                        type="text"
+                        name="telefono"
+                        placeholder="Ingresa tu telefono"
+                        required
+                        minlength="10"
+                        maxlength="10"
+                        inputmode="numeric"
+                        value="{{ request.form.telefono or '' }}"
+                        id="ingresar_datos_campo"
+                    >
+
+                </section>
+
+                <section class="contenedor-input">
+
+                    <p>Email</p>
+
+                    <input
+                        type="email"
+                        name="email"
+                        placeholder="Ingresa tu email"
+                        required
+                        minlength="10"
+                        value="{{ request.form.email or '' }}"
+                        id="ingresar_datos_campo"
+                    >
+
+                </section>
+
+                <section class="contenedor-input">
+
+                    <p>Direccion</p>
+
+                    <input
+                        type="text"
+                        name="direccion"
+                        placeholder="Ingresa tu direccion"
+                        required
+                        minlength="5"
+                        value="{{ request.form.direccion or '' }}"
+                        id="ingresar_datos_campo"
+                    >
+
+                </section>
+
+            </section>
+
+        </section>
+
+        <br><br>
+
+        <p class="mensaje_error">
+            {{ error }}
+        </p>
+
+        <input
+            type="submit"
+            value="Crear usuario"
+            id="boton-enviar"
+        >
+
+    </form>
+
+</main>
+
+</body>
+
+</html>

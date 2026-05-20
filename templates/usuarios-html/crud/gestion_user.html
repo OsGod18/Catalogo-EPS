@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ usuario.nombre.split(' ')[0] }}</title>
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/usuarios-css/crud/gestion_user.css') }}"
+    >
+    <link
+        rel="icon"
+        href="{{ url_for('static', filename='imagenes/favicon.png') }}"
+        type="image/png"
+    >
+    
+    <!--Infografia:-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+
+</head>  
+<body>
+    <header>
+        <nav class="presentacion">
+        <img
+            src="{{ url_for('static', filename='imagenes/header-icon.png') }}"
+            class="icon-header"
+        >
+            <a id = "titulo-header" href="{{ url_for('usuarios.catalogo_user') }}" target="_self">Regresar</a>
+        </nav>
+
+        <nav class="presentacion">
+            <a href="{{ url_for('usuarios.logout_user') }}" id="usuario">Cerrar sesión</a>
+        </nav>
+    </header>
+
+<main>
+    <!-- FORM GENERAL -->
+    <form action="{{ url_for('usuarios.gestion_user') }}" method="POST">
+
+        <!--Header general(perfil)-->
+        <section id="contenedor-perfil">
+            <img
+                src="{{ url_for('static', filename='imagenes/icon-login-usuario.png') }}"
+                id="icon-login"
+            >
+
+        
+            <section id="contenedor-nombre">
+                <p id="tu-informacion">tu informacion</p>
+                <input type="text" name="nombre" id = "nombre"
+                value="{{ request.form.nombre or usuario.nombre }}">
+            </section>
+        
+        </section>
+
+
+        <!--Body(datos) -->
+        <section id="contenedor-informacion"> 
+            <section class="contenedor-informacion-bloque">
+
+                <div class="grupo-input-edicion">
+                    <label class="label-edicion"><p>Documento</p></label>
+                    <input type="text" name="documento" class="ingresar_datos_campo"
+                        value="{{ request.form.documento or usuario.documento }}">
+                </div>
+
+                <div class="grupo-input-edicion">
+                    <label class="label-edicion"><p>Email</p></label>
+                    <input type="text" name="email" class="ingresar_datos_campo"
+                        value="{{ request.form.email or usuario.email }}">
+                </div>
+
+            </section>
+
+            <section class="contenedor-informacion-bloque">
+
+                <div class="grupo-input-edicion">
+                    <label class="label-edicion"><p>Telefono</p></label>
+                    <input type="text" name="telefono" class="ingresar_datos_campo"
+                        value="{{ request.form.telefono or usuario.telefono }}">
+                </div>
+
+                <div class="grupo-input-edicion">
+                    <label class="label-edicion"><p>Direccion</p></label>
+                    <input type="text" name="direccion" class="ingresar_datos_campo"
+                        value="{{ request.form.direccion or usuario.direccion }}">
+                </div>
+
+            </section>
+        </section>
+
+
+        <!-- MENSAJES -->
+        <section id = "contenedor-mensajes">
+                {% if mensaje %}
+                    <p class="mensaje_estado">{{ mensaje }}</p>
+                {% endif %}
+                {% if error %}
+                    <p class="mensaje_error">{{ error }}</p>
+                {% endif %}
+        </section>
+
+
+        <!-- BOTÓN UPDATE -->
+        <section class="contenedor-botones">
+            <button type="submit" name="accion" value="actualizar" id="boton-actualizar">
+                Actualizar Datos
+            </button>
+
+    </form>
+
+    <!-- ELIMINAR USUARIO -->
+    <form action="{{ url_for('usuarios.gestion_user') }}" method="POST">
+
+        <input type="hidden" name="accion" value="eliminar">
+
+        <!-- BOTÓN INICIAL -->
+            <button type="button" id="boton-eliminar" onclick="mostrarConfirmacion()">Eliminar Usuario</button>
+        </section>
+
+        <!-- CONTENEDOR OCULTO -->
+        <div id="confirmacion-eliminar" style="display:none; margin-top:20px;">
+
+            <p id="mensaje-confirmacion">
+                Estas intentando eliminar tu usuario, para confirmar, ingresa tu PIN
+            </p>
+
+            <div class="grupo-input-edicion">
+                <input type="text" name="pin" placeholder="Ingresa tu PIN"
+                    class="ingresar_datos_campo">
+            </div>
+
+            <!-- MENSAJE ERROR SOLO DELETE -->
+            {% if error_delete %}
+                <p class="mensaje_error">{{ error_delete }}</p>
+            {% endif %}
+
+            <button type="submit" id="boton-eliminar">
+                Confirmar
+            </button>
+
+        </div>
+
+        <!--Solicitudes-->
+        <h2 id="titulo-solicitudes">
+            Tus medicamentos {{ usuario.nombre.split(' ')[0] }}
+        </h2>
+
+        <section id="contenedor-solicitudes">
+
+            {% if solicitudes %}
+
+                <div class="grid-solicitudes">
+                    {% for s in solicitudes %}
+                        <div class="card-solicitud">
+
+                            <h3 class="nombre-medicamento">
+                                {{ s.nombre }}
+                            </h3>
+
+                            <p><strong>Tipo:</strong> {{ s.tipo_entrega }}</p>
+
+                            <p><strong>Solicitado:</strong> 
+                                {{ s.fecha_solicitud.strftime('%d/%m/%Y %H:%M') }}
+                            </p>
+
+                            <p><strong>Entrega:</strong> {{ s.fecha_entrega }}</p>
+
+                        </div>
+                    {% endfor %}
+                </div>
+
+            {% else %}
+
+                <div class="sin-solicitudes">
+                    Sin solicitudes
+                </div>
+
+            {% endif %}
+
+        </section>
+
+    </form>
+
+
+</main>
+
+</body>
+
+<script>
+function mostrarConfirmacion() {
+    document.getElementById("confirmacion-eliminar").style.display = "block";
+}
+</script>
+</html>

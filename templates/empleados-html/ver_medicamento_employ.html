@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>{{ medicamento.nombre_medicamento }}</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/empleados-css/ver_medicamento_employ.css') }}">
+
+    <!--<link rel="stylesheet" href="../../../static/css/empleados-css/ver_medicamento_employ.css">-->
+
+    <link rel="icon" href="{{ url_for('static', filename='imagenes/favicon-empleado.png') }}">
+
+</head>
+
+<body>
+
+<header>
+
+    <nav id="presentacion">
+
+        <img src="{{ url_for('static', filename='imagenes/header-icon-empleado.png') }}" id="icon-header">
+
+        <a href="{{ url_for('empleados.catalogo_employ') }}" id="titulo-header">
+
+            <h2>Catalogo virtual EPS</h2>
+
+        </a>
+
+    </nav>
+
+</header>
+
+<main>
+
+{% if medicamento.imagen_card == "sin-imagen.png" %}
+
+<section id="contenedor-grande">
+
+    <section id ="contenedor-informacion-medicamento">
+
+        <h1 class="titulo-informacion">MODIFICANDO INFORMACION</h1>
+
+
+        <form action="{{ url_for('empleados.ver_medicamento_employ', id=medicamento.id) }}" method="POST">
+            <div id = "bloque-division">
+                <div class="bloque-input">
+                    <p class="texto-label"><strong>Modificar nombre:</strong></p>
+                    <input type="text" name="nombre_medicamento" class="input-medicamento" value="{{ request.form.nombre_medicamento or medicamento.nombre_medicamento }}">
+                    
+                    <p class="texto-label"><strong>Modificar Descripcion:</strong></p>
+                    <textarea name="descripcion_medicamento" class="textarea-medicamento">{{ request.form.descripcion_medicamento or medicamento.descripcion_medicamento }}</textarea>
+                    
+                    <p class="texto-label"><strong>Modificar Formula:</strong></p>
+                    <input type="text" name="formula_quimica" class="input-medicamento" value="{{ request.form.formula_quimica or medicamento.formula_quimica }}">
+                    
+                    <p class="texto-label"><strong>Modificar Cantidad:</strong></p>
+                    <input type="text" name="cantidad_pastas" class="input-medicamento" value="{{ request.form.cantidad_pastas or medicamento.cantidad_pastas }}">
+                
+                </div>
+                <div class="bloque-input">
+                    <p class="texto-label"><strong>Modificar Precio:</strong></p>
+                    <input type="text" inputmode="numeric" name="precio" class="input-medicamento" value="{{ request.form.precio or medicamento.precio }}">
+                    
+                    <p class="texto-label"><strong>Modificar Stock:</strong></p>
+                    <input type="text" inputmode="numeric" name="stock" class="input-medicamento" value="{{ request.form.stock or medicamento.stock }}">
+                    
+                    <p class="texto-label"><strong>Modificar Inclusion al PBS:</strong></p>
+                    <select name="incluido_pbs" class="input-medicamento">
+                        <option value="1" {% if medicamento.incluido_pbs == 1 %}selected{% endif %}>Si</option>
+                        <option value="0" {% if medicamento.incluido_pbs == 0 %}selected{% endif %}>No</option>
+                    </select>
+
+                    <br><br>
+
+                    <br>
+                <div id="contenedor-mensajes">
+                    <p class="mensaje-exito">{{ mensaje }}</p>
+                    <p class="mensaje-error">{{ error }}</p>
+                </div>
+                <br><br>
+                <button type="submit" id="boton-recoger"> Actualizar datos </button>
+
+        </form>     
+
+        {% if medicamento.imagen_card == "sin-imagen.png" %}
+        <form action="{{ url_for('empleados.ver_medicamento_employ', id=medicamento.id) }}" method="POST">
+            <input type="hidden" name="accion" value="eliminar_medicamento">
+            <button type="submit" id="boton-eliminar-medicamento">Eliminar medicamento</button>
+        </form>
+        {% endif %}
+
+                </div>
+            </div>
+
+                <h2 class = "titulo-informacion">medicamento SIN imagen</h2>
+
+    </section>
+
+{% else %}
+<section id="contenedor-grande">
+
+    <section id ="contenedor-informacion-medicamento">
+
+        <h1 class="titulo-informacion">MODIFICANDO INFORMACION</h1>
+
+
+
+        <form action="{{ url_for('empleados.ver_medicamento_employ', id=medicamento.id) }}" method="POST">
+            <div id = "bloque-division">
+                <div class="bloque-input">
+                    <p class="texto-label"><strong>Modificar nombre:</strong></p>
+                    <input type="text" name="nombre_medicamento" class="input-medicamento" value="{{ request.form.nombre_medicamento or medicamento.nombre_medicamento }}">
+                    
+                    <p class="texto-label"><strong>Modificar Descripcion:</strong></p>
+                    <textarea name="descripcion_medicamento" class="textarea-medicamento">{{ request.form.descripcion_medicamento or medicamento.descripcion_medicamento }}</textarea>
+                    
+                    <p class="texto-label"><strong>Modificar Formula:</strong></p>
+                    <input type="text" name="formula_quimica" class="input-medicamento" value="{{ request.form.formula_quimica or medicamento.formula_quimica }}">
+                    
+                    <p class="texto-label"><strong>Modificar Cantidad:</strong></p>
+                    <input type="text" name="cantidad_pastas" class="input-medicamento" value="{{ request.form.cantidad_pastas or medicamento.cantidad_pastas }}">
+                
+                </div>
+                <div class="bloque-input">
+                    <p class="texto-label"><strong>Modificar Precio:</strong></p>
+                    <input type="text" inputmode="numeric" name="precio" class="input-medicamento" value="{{ request.form.precio or medicamento.precio }}">
+                    
+                    <p class="texto-label"><strong>Modificar Stock:</strong></p>
+                    <input type="text" inputmode="numeric" name="stock" class="input-medicamento" value="{{ request.form.stock or medicamento.stock }}">
+                    
+                    <p class="texto-label"><strong>Modificar Inclusion al PBS:</strong></p>
+                    <select name="incluido_pbs" class="input-medicamento">
+                        <option value="1" {% if medicamento.incluido_pbs == 1 %}selected{% endif %}>Si</option>
+                        <option value="0" {% if medicamento.incluido_pbs == 0 %}selected{% endif %}>No</option>
+                    </select>
+
+                    <br><br>
+
+                    <br>
+                <div id="contenedor-mensajes">
+                    <p class="mensaje-exito">{{ mensaje }}</p>
+                    <p class="mensaje-error">{{ error }}</p>
+                </div>
+                <br><br>
+                <button type="submit" id="boton-recoger"> Actualizar datos </button>
+
+        </form>     
+
+        {% if medicamento.imagen_card == "sin-imagen.png" %}
+        <form action="{{ url_for('empleados.ver_medicamento_employ', id=medicamento.id) }}" method="POST">
+            <input type="hidden" name="accion" value="eliminar_medicamento">
+            <button type="submit" id="boton-eliminar-medicamento">Eliminar medicamento</button>
+        </form>
+        {% endif %}
+
+                </div>
+            </div>
+
+
+    </section>
+
+    <!-- IMAGENES -->
+    <section id="contenedor-imagen-medicamento">
+            <h1 class="titulo-informacion">Empaque:</h1>
+
+            <img 
+            src="{{ url_for('static', filename='imagenes/medicamentos/' ~ medicamento.nombre_medicamento ~ '/' ~ medicamento.imagen_empaque) }}"
+            class="
+                {% if medicamento.nombre_medicamento == 'Insulina' %}
+                    imagen-insulina
+                {% else %}
+                    imagen-empaque
+                {% endif %}
+            ">
+
+        <br>
+
+            <h1 class="titulo-informacion">Producto:</h1>
+            <br>
+            <img 
+            src="{{ url_for('static', filename='imagenes/medicamentos/' ~ medicamento.nombre_medicamento ~ '/' ~ medicamento.imagen_producto) }}"
+            class="
+                {% if medicamento.nombre_medicamento == 'Amoxicilina' %}
+                    imagen-amoxicilina
+                {% elif medicamento.nombre_medicamento == 'Insulina' %}
+                    imagen-amoxicilina
+                {% else %}
+                    imagen-producto
+                {% endif %}
+            ">
+    </section>
+
+</section>
+{% endif %}
+
+</main>
+
+</body>
+</html>

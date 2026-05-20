@@ -1,0 +1,284 @@
+/*ENCABEZADO Y CUERPO.*/
+
+body{
+    background-color: #2c2d2c;
+}
+
+header {
+    background: #2E8F01;
+    background: radial-gradient(circle,rgba(46, 143, 1, 1) 0%, rgba(50, 55, 48, 1) 53%);
+    width: 100%;
+    height: 80px;
+    overflow: hidden;
+    border-radius: 10px;
+    position: fixed;
+    top: 0;    /* Pegado arriba */
+    left: 0;   /* Pegado a la izquierda */
+    z-index: 1000;   /* Encima de otros elementos */
+}
+
+#presentacion{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    color: #ffffff;
+    margin-top: 10px;
+    text-shadow: 1px 1px #000000;
+}
+
+#icon-header {
+    width: 60px;
+    height: 60px;
+    border-radius: 100%;
+    box-shadow: 1px 1px 10px 1px #ffffff;
+    transition: box-shadow 0.8s ease;
+}
+
+#icon-header:hover{
+    box-shadow: 1px 1px 10px 1px #000000;
+}
+
+#titulo-header {
+    text-shadow: 2px 2px #000000;
+    font-family: "Fira sans", sans-serif;
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 23px;
+    font-weight:bold
+}
+
+/*Parte principal*/
+
+main{
+    background: #2E8F01;
+    background: radial-gradient(circle,rgba(46, 143, 1, 1) 0%, rgba(50, 55, 48, 1) 53%);
+    margin-top: 140px;
+    margin-left: 250px;
+    margin-right: 250px;
+    padding: 35px;
+    text-align: center;
+    border-radius: 20px;
+}
+
+
+#icon-login{
+    width: 100px;
+    height: 100px;
+    border-radius: 100%;
+    box-shadow: 1px 1px 10px 1px #b0b0b0;
+    margin-top: 50px;
+    transition: all 0.8s ease;
+}
+
+#icon-login:hover{
+    width: 120px;
+    height: 120px;
+    box-shadow: 1px 1px 10px 1px #000000;
+}
+
+h1 {
+    font-size: 40px;
+    color: rgba(255, 249, 249, 0.858); 
+    font-family: "Fira sans", sans-serif;
+    margin-top: 35px;
+    text-shadow: 2px 2px #000000;
+}
+
+#indicacion {
+    font-size: 28px;
+    color: #fff9f9db; 
+    font-family: "Fira sans", sans-serif;
+
+}
+
+.contenedor-grupo {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+}
+
+
+p {
+    font-size: 24px;
+    color: #fff9f9db; 
+    font-family: "Fira sans", sans-serif;
+    margin-bottom: 5px;
+    text-shadow: 1px 1px #000000;
+}
+
+.mensaje_error{
+    height:30px;
+    color:red;
+    font-size:18px;
+    text-align:center;
+    margin-top:10px;
+    font-family:"Fira Sans", sans-serif;
+}
+
+
+#ingresar_datos_campo {
+    color: #2e8f01;
+    text-shadow: 1px 1px #2e8f01;
+    font-size: 22px;
+    text-align: center;
+    border: #c3c3c3;
+    border-radius: 10px;
+    height: 35px;
+    transition: all 0.8s ease;
+}
+
+
+
+#ingresar_datos_campo:focus , #ingresar_datos_campo:hover{
+    font-size: 24px;
+    height: 43px;
+}
+
+input::placeholder {
+    color: #888;       
+    font-style: italic; 
+    opacity: 1;        
+}
+
+#boton-enviar {
+    color: #2e8f01;
+    font-size: 25px;
+    font-family: "Fira sans", sans-serif;
+    background-color: white;
+    border: #2e8f01;
+    border-radius: 10px;
+    height: 40px;
+    width: 20%;
+
+    transition: all 0.8s ease;
+}
+
+#boton-enviar:hover {
+    color: #ffffff;
+    font-size: 30px;
+    background-color: #1d5801;
+    border: #ffffff;
+    height: 45px;
+    width: 24%;
+    border: solid #ffffff;
+}
+
+#boton-actualizar {
+    color: #2e8f01;
+    font-size: 25px;
+    font-family: "Fira sans", sans-serif;
+    background-color: white;
+    border: #2e8f01;
+    border-radius: 10px;
+    height: 40px;
+    width: 32%;
+
+    transition: all 0.8s ease;
+}
+
+#boton-actualizar:hover {
+    color: #ffffff;
+    font-size: 30px;
+    background-color: #1d5801;
+    border: #ffffff;
+    height: 45px;
+    width: 36%;
+    border: solid #ffffff;
+}
+
+/* --- RESPONSIVE DESIGN --- */
+
+/* Ajustes para Tablets (Pantallas menores a 1024px) */
+@media (max-width: 1024px) {
+    main {
+        margin-left: 50px;
+        margin-right: 50px;
+    }
+
+    #boton-enviar {
+        width: 30%;
+    }
+
+    #boton-enviar:hover {
+        width: 34%;
+    }
+
+    #boton-actualizar {
+        width: 45%;
+    }
+
+    #boton-actualizar:hover {
+        width: 50%;
+    }
+}
+
+/* Ajustes para Celulares (Pantallas menores a 768px) */
+@media (max-width: 768px) {
+    header {
+        height: auto;
+        padding: 10px 0;
+    }
+
+    #presentacion {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    #titulo-header {
+        font-size: 18px;
+        text-align: center;
+    }
+
+    main {
+        margin-top: 160px; /* Evita que el contenido quede bajo el header colapsado */
+        margin-left: 15px;
+        margin-right: 15px;
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 28px;
+        margin-top: 20px;
+    }
+
+    #indicacion {
+        font-size: 20px;
+    }
+
+    p {
+        font-size: 18px;
+    }
+
+    #ingresar_datos_campo {
+        width: 90%; /* Ajuste para que el input sea más fácil de tocar */
+    }
+
+    #boton-enviar, #boton-actualizar {
+        width: 80%;
+        font-size: 22px;
+    }
+
+    #boton-enviar:hover, #boton-actualizar:hover {
+        width: 85%;
+        font-size: 25px;
+    }
+}
+
+/* Ajustes para celulares muy pequeños */
+@media (max-width: 480px) {
+    h1 {
+        font-size: 24px;
+    }
+
+    #icon-login {
+        width: 80px;
+        height: 80px;
+    }
+
+    #icon-login:hover {
+        width: 90px;
+        height: 90px;
+    }
+}

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title> Envio </title>
+
+    <!-- CSS -->
+    <link  rel="stylesheet" href="{{ url_for('static', filename='css/usuarios-css/envio_medicamento_user.css') }}" >
+
+    <!-- FAVICON -->
+    <link  rel="icon" href="{{ url_for('static', filename='imagenes/favicon.png') }}" type="image/png" >
+
+    <!-- FUENTE -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link  href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet" >
+
+</head>
+
+<body>
+
+<header>
+
+    <nav id="presentacion">
+        <img  src="{{ url_for('static', filename='imagenes/header-icon.png') }}" id="icon-header" >
+
+        <a href="{{ url_for('usuarios.catalogo_user') }}" id="titulo-header"> <h2> Catalogo virtual EPS </h2> </a>
+    </nav>
+
+</header>
+
+<main>
+
+    <h1 class="titulo"> Selecciona una fecha para tu {{ medicamento }} </h1>
+
+    <!-- FORMULARIO -->
+    <form action="{{ url_for('usuarios.guardar_solicitud_user') }}" method="POST">
+
+        <!-- DATOS OCULTOS -->
+        <input type="hidden" name="medicamento" value="{{ medicamento }}" >
+
+        <input type="hidden" name="tipo_entrega" value="{{ tipo_entrega }}" >
+
+        <input type="hidden" name="fecha_entrega" id="fecha_entrega" required>
+
+        <!-- FECHAS GLOBALES -->
+        <section class="opciones">
+
+            {% for fecha in fechas %}
+
+            <button type="button" class="opcion boton-fecha" data-fecha="{{ fecha.fecha }}">
+                {{ fecha.fecha }}
+            </button>
+
+            {% endfor %}
+
+        </section>
+
+        <!-- BOTON -->
+        <button type="submit" class="boton"> Confirmar </button>
+
+    </form>
+
+    <!-- MENSAJE -->
+    {% if mensaje %}
+
+        <div id="mensaje" class="mensaje">
+            {{ mensaje }}
+        </div>
+
+    {% endif %}
+
+    <br><br>
+
+    <!-- FACTURA -->
+    {% if mostrar_factura %}
+
+        <form action="{{ url_for('usuarios.generar_factura_user', solicitud_id=solicitud_id) }}" >
+            <button type="submit" id="boton-pdf"> Generar Factura </button>
+        </form>
+
+    {% endif %}
+
+</main>
+
+<!-- SCRIPT -->
+<script>
+
+const opciones = document.querySelectorAll(".opcion");
+const fechaEntregaInput = document.getElementById("fecha_entrega");
+
+opciones.forEach(opcion => {
+
+    opcion.addEventListener("click", function () {
+
+        opciones.forEach(o => 
+            o.classList.remove("seleccionada")
+        );
+
+        this.classList.add("seleccionada");
+        fechaEntregaInput.value = this.dataset.fecha;
+
+    });
+
+});
+
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{{ usuario.nombre.split(' ')[0] }}</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/empleados-css/crud/gestion_employ.css') }}">
+    <!--<link rel="stylesheet" href="../../../static/css/empleados-css/crud/gestion_employ.css">-->
+
+    <link rel="icon" href="{{ url_for('static', filename='imagenes/favicon-empleado.png') }}" type="image/png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+<header>
+
+    <nav class="presentacion">
+
+        <img src="{{ url_for('static', filename='imagenes/header-icon-empleado.png') }}" class="icon-header">
+
+        <a id="titulo-header" href="{{ url_for('empleados.catalogo_employ') }}">Regresar</a>
+
+    </nav>
+
+    <nav class="presentacion">
+
+        <a href="{{ url_for('empleados.logout_employ') }}" id="usuario">Cerrar sesión</a>
+
+    </nav>
+
+</header>
+
+<main>
+
+        <!-- PERFIL EMPLEADO -->
+
+        <section id="contenedor-perfil">
+
+            <img src="{{ url_for('static', filename='imagenes/icon-login-empleado.png') }}" id="icon-login">
+
+            <section id="contenedor-nombre">
+
+                <p id="tu-informacion">Panel de empleado</p>
+
+                <h1 id="nombre">
+                    {{ usuario.nombre.split(' ')[0] }}
+                </h1>
+
+            </section>
+
+        </section>
+
+        <!-- SALARIO -->
+
+        <section id="contenedor-salario">
+
+            <p id="texto-salario">
+                Salario disponible:
+            </p>
+
+            <p id="valor-salario">
+                $ {{ "{:,.0f}".format(usuario.salario).replace(",", ".") }}
+            </p>
+
+        </section>
+
+        <!-- PASAR SALARIO A SALDO -->
+
+        <form action="{{ url_for('empleados.gestion_empleado') }}" method="POST">
+
+            <input type="hidden" name="accion" value="transferir_salario">
+
+            <section id="contenedor-transferir">
+
+                <button type="submit" id="boton-transferir">
+                    Pasar salario a saldo
+                </button>
+
+            </section>
+
+        </form>
+
+        <!-- MENSAJES -->
+
+        <section id="contenedor-mensajes">
+
+                {% if mensaje %}
+                    <p class="mensaje_estado">{{ mensaje }}</p>
+                {% endif %}
+                {% if error %}
+                    <p class="mensaje_error">{{ error }}</p>
+                {% endif %}
+
+        </section>
+
+        <br><br>
+        <!-- ELIMINAR EMPLEADO -->
+
+        <form action="{{ url_for('empleados.gestion_empleado') }}" method="POST">
+
+            <input type="hidden" name="accion" value="eliminar">
+
+            <section class="contenedor-botones">
+
+                <button type="button" id="boton-eliminar" onclick="mostrarConfirmacion()">
+                    Eliminar "empleado"
+                </button>
+
+            </section>
+
+            <div id="confirmacion-eliminar" style="display:none; margin-top:20px;">
+
+                <p id="mensaje-confirmacion">
+                    Estas intentando eliminar tu cuenta de empleado, para confirmar, ingresa tu PIN
+                </p>
+
+                <div class="grupo-input-edicion">
+
+                    <input type="text" name="pin" placeholder="Ingresa tu PIN" class="ingresar_datos_campo">
+
+                </div>
+
+                <p class="mensaje_error">{{ error_delete }}</p>
+
+                <button type="submit" id="boton-eliminar">
+                    Confirmar
+                </button>
+
+            </div>
+
+        </form>
+
+    <!-- TAREAS -->
+
+    <section id="contenedor-tareas">
+
+        <h2 id="titulo-tareas">Tareas de labor</h2>
+
+        <p id="descripcion-tareas">
+            Completa todas las tareas y recibe una recompensa de <strong id = "dinero">$20.000</strong>
+        </p>
+
+        {% for tarea in tareas %}
+
+        <section class="tarea">
+
+            <section class="contenido-tarea">
+
+                <p class="descripcion-tarea">
+                    {{ tarea.descripcion }}
+                </p>
+
+                <p class="progreso-tarea">
+                    {{ tarea.progreso }} / {{ tarea.objetivo }}
+                </p>
+
+            </section>
+
+            {% if tarea.completada %}
+
+                <p class="estado-completado">
+                    COMPLETADA
+                </p>
+
+            {% else %}
+
+                <form action="{{ url_for('empleados.gestion_empleado') }}" method="POST">
+                    <input type="hidden" name="accion" value="completar_tarea">
+                    <input type="hidden" name="tarea_id" value="{{ tarea.id }}">
+                    <button type="submit" class="boton-completar">
+                        Completar tarea
+                    </button>
+                </form>
+
+            {% endif %}
+
+        </section>
+
+        {% endfor %}
+
+    </section>
+
+</main>
+
+</body>
+
+<script>
+
+function mostrarConfirmacion() {
+
+    document.getElementById("confirmacion-eliminar").style.display = "block";
+
+}
+
+</script>
+
+</html>

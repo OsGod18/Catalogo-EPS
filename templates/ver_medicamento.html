@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ medicamento.nombre_medicamento }}</title>
+
+    <!--<link rel="stylesheet" href="{{ url_for('static', filename='css/ver_medicamento.css') }}">-->
+    <link rel="stylesheet" href="../static/css/ver_medicamento.css">
+    <link rel="icon" href="{{ url_for('static', filename='imagenes/icono-pestaña.png') }}">
+
+</head>
+
+<body>
+
+<header>
+    <nav id="presentacion">
+        <img src="{{ url_for('static', filename='imagenes/header-icon.png') }}" id="icon-header">
+        <a href="{{ url_for('catalogo') }}" id="titulo-header">
+            <h2>Catalogo virtual EPS</h2>
+        </a>
+    </nav>
+</header>
+
+<main>
+
+<section id="contenedor-grande">
+
+    <!-- INFORMACION -->
+    <section class="contenedor-informacion-medicamento">
+
+        <h1 class="titulo-informacion">INFORMACION</h1>
+
+        <p class="texto-informativo">
+            <strong>Descripcion:</strong><br><br>
+            {{ medicamento.descripcion_medicamento }}
+        </p>
+
+
+        <p class="texto-informativo">
+            <strong>Formula:</strong><br><br>
+            {{ medicamento.formula_quimica }}
+        </p>
+
+
+        <p class="texto-informativo">
+            <strong>Cantidad:</strong><br><br>
+            {{ medicamento.cantidad_pastas }}
+        </p>
+
+
+        <p class="texto-informativo"><strong>Stock:</strong></p>
+
+        <p class="
+            {% if medicamento.stock > 500 %}
+                cantidad-mayor-500
+            {% elif medicamento.stock > 200 %}
+                cantidad-menor-500
+            {% else %}
+                cantidad-menor-200
+            {% endif %}
+        "> {{ medicamento.stock }} </p>
+
+        <br><br><br>
+
+        <!-- BOTONES -->
+        <form action="{{ url_for('envio') }}" method="GET">
+            <input type="hidden" name="medicamento" value="{{ medicamento.nombre_medicamento }}">
+            <input type="hidden" name="tipo_entrega" value="Recoger EPS">
+            <button id="boton-recoger">Recoger EPS</button>
+        </form>
+
+        <br><br>
+
+        <form action="{{ url_for('envio') }}" method="GET">
+            <input type="hidden" name="medicamento" value="{{ medicamento.nombre_medicamento }}">
+            <input type="hidden" name="tipo_entrega" value="Domicilio">
+            <button id="boton-domicilio">Solicitar domicilio</button>
+        </form>
+
+    </section>
+
+    <!-- IMAGENES -->
+    <section class="contenedor-informacion-medicamento">
+
+        <h1 class="titulo-informacion">Empaque:</h1>
+
+        <img 
+        src="{{ url_for('static', filename='imagenes/medicamentos/' ~ medicamento.nombre_medicamento ~ '/' ~ medicamento.imagen_empaque) }}"
+        class ="
+            {% if medicamento.nombre_medicamento == 'Insulina'%}
+                imagen-insulina
+            {% else %}
+                imagen-empaque
+            {% endif %}">
+        
+
+        <br><br><br>
+
+        <h1 class="titulo-informacion">Producto:</h1>
+
+        {% set especiales = ['Amoxicilina', 'Insulina'] %}
+
+        <img 
+        src="{{ url_for('static', filename='imagenes/medicamentos/' ~ medicamento.nombre_medicamento ~ '/' ~ medicamento.imagen_producto) }}"
+        class="
+            {% if medicamento.nombre_medicamento == 'Amoxicilina'%}
+                imagen-amoxicilina
+            {% elif medicamento.nombre_medicamento == 'Insulina'%}
+                imagen-amoxicilina
+            {% else %}
+                imagen-producto
+            {% endif %}">
+
+    </section>
+
+</section>
+
+</main>
+
+</body>
+</html>

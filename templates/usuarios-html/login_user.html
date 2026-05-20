@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Login Usuario</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/usuarios-css/login_user.css') }}">
+
+    <link rel="icon" href="{{ url_for('static', filename='imagenes/favicon.png') }}" type="image/png">
+
+    <!-- Tipografía -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <header>
+
+        <nav id="presentacion">
+
+            <img 
+                src="{{ url_for('static', filename='imagenes/header-icon.png') }}"
+                alt="Logo"
+                id="icon-header"
+            >
+            
+            <a id="titulo-header" href="{{ url_for('inicio') }}">Regresar a Inicio</a>
+
+        </nav>
+
+    </header>
+
+    <main>
+
+        <h1>Ingresa al catalogo virtual</h1>
+
+        <br>
+
+        <form action="{{ url_for('usuarios.validar_login_user') }}" method="POST">
+
+            <p>Documento</p>
+
+            <input 
+                type="text"
+                name="documento"
+                placeholder="Ingresa tu documento"
+                required
+                minlength="6"
+                maxlength="10"
+                inputmode="numeric"
+                id="ingresar_datos_campo"
+            >
+
+            <p>PIN</p>
+
+            <input 
+                type="password"
+                name="pin"
+                placeholder="Ingresa tu PIN"
+                required
+                minlength="4"
+                maxlength="4"
+                inputmode="numeric"
+                id="ingresar_datos_campo"
+            >
+
+            <br><br>
+
+            <p class="mensaje_error">
+                {{ error }}
+            </p>
+
+            <input 
+                type="submit"
+                value="Ingresar"
+                id="boton-enviar"
+            >
+
+            <nav id="contenedor-opciones-seguridad">
+
+                <a 
+                    class="opcion-seguridad"
+                    href="{{ url_for('usuarios.crear_user') }}"
+                >
+                    No me encuentro registrado
+                </a>
+
+                <a 
+                    class="opcion-seguridad"
+                    href="{{ url_for('usuarios.modificar_pin_validar_user') }}"
+                >
+                    Olvidé mi PIN
+                </a>
+
+            </nav>
+
+        </form>
+
+    </main>
+
+</body>
+</html>

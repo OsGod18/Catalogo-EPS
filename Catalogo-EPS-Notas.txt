@@ -1,0 +1,197 @@
+SANGRIA DEL PROYECTO
+
+--Proyecto EPS
+│
+├── eps_env                     # Entorno virtual del proyecto
+│
+├── static/
+│   ├──css/
+│   │   └──crud/
+│   │       ├── create.html       # reemplaza "crear_usuario.css"
+│   │       ├── gestion_account.css # reemplaza "gestion_usuario.css"
+│   │       └── modificar_pin_validar.css
+│   │
+│   └──imágenes/
+│       ├── --medicamentos        # las doce carpetas de los doce medicamentos y sus respectivas imágenes
+│       ├── header-icon.png
+│       ├── icon-login-usuario.png
+│       └── icono-pestaña.png
+│
+├──templates/
+│   ├──usuarios/
+│   │   └──crud/
+│   │   │    ├── crear_user.html
+│   │   │    ├── gestion_user.html
+│   │   │    ├── modificar_pin_user.html
+│   │   │    └── modificar_pin_validar_user.html
+│   │   │
+│   │   ├── catalogo_user.html
+│   │   ├── envio_medicamento_user.html
+│   │   ├── login_user.html
+│   │   └── ver_medicamento_user.html
+│   │
+│   ├──clientes/
+│   │   └──crud/
+│   │   │    ├── crear_client.html
+│   │   │    ├── gestion_client.html
+│   │   │    ├── modificar_pin_client.html
+│   │   │    └── modificar_pin_validar_client.html
+│   │   │
+│   │   ├── catalogo_client.html
+│   │   ├── envio_medicamento_client.html
+│   │   ├── login_client.html
+│   │   └── ver_medicamento_client.html
+│   │
+│   └──empleados/
+│       └──crud/
+│       │    ├── crear_employ.html
+│       │    ├── gestion_employ.html
+│       │    ├── modificar_pin_employ.html
+│       │    └── modificar_pin_validar_employ.html
+│       │
+│       ├── catalogo_employ.html
+│       ├── envio_medicamento_employ.html
+│       ├── login_employ.html
+│       └── ver_medicamento_employ.html
+│
+└── app.py                        # cerebro del proyecto, aquí va la modularización de Flask la cual tu tienes que indicarme
+
+
+
+----------------
+
+¿Qué tal esta sangría?. ¿Te parece bien?, tratare de usar un css para cada función y dividirlo en secciones(usuario, cliente, empleado), así no creo diferentes carpetas y mas archivos. Necesito que me indiques como debe la sangria del "app.py" y especificarme cuales son carpetas y cuales son archivos.
+
+####################################
+
+---
+
+1. Un login, solo para los usuarios registrados en el sistema. #COMPLETADO
+
+2. Un módulo para realizar la venta de un producto y que imprima la factura en formato PDF. #COMPLETADO	 
+
+3. Un módulo de registro de productos. #FALTA
+
+4. Un modulo de registro de empleados. #FALTA
+
+5. Un modulo de registro de clientes. #FALTA
+
+6. Un módulo de ventas. #FALTA
+
+7. Un módulo de reportes, para sacar los siguientes reportes: #FALTA
+
+Inventario actual de productos en el sistema. 
+
+El numero total de clientes registrados. 
+
+El valor total de todas las facturas de venta. 
+
+Cada módulo de registro debe tener las cuatro operaciones del CRUD, mientras que el modulo de ventas y de reportes, deben contar con su respectiva opción de impresión. #FALTA
+
+Cuando se realiza una venta, se debe disminuir la cantidad de producto en stock. #COMPLETADO
+
+---
+
+Te comento mi idea para atacar los puntos "3, 4, 6, 7"; Me gustaria replicar todo lo que hemos hecho (catalogo, gestion_usuario, ver medicamento, envio_medicamento) pero adaptado a un EMPLEADO. Seria un cambio bastante gigante. Tocaria la base de datos con nuevas tablas, una nueva sangría de carpetas del proyecto, un nuevo flujo de código (como interactúa el usuario con la aplicación web) y mas que todo, esfuerzo. Te dire como será el nuevo flujo y tu me daras recomendaciones para cosas inciertas (las cuales yo te voy a marcar) o procesos que no tengo confianza de aplicar.
+
+ACLARACION: acabo de investigar el tema de si los medicamentos son "gratis" o no. Resulta los usuarios de una EPS, pueden reclamar medicamentos gratis únicamente SI ESTOS se encuentran incluidos en el Plan de Beneficios en Salud(la eps se encarga de cubrir el costo). Si el medicamento no esta incluido en este PBS, tendrá un costo. Teniendo esto en cuenta, tomaremos dos datos importantes: 
+
+1. "Para los Usuarios de 'CatalogoEPS', los medicamentos con PBS (nosotros los desarrolladores debemos identificar que medicamentos entrarían a esta ley) podrán ser solicitados de manera gratuita. Los medicamentos excluidos del PBS mantendrán su costo".
+
+2. "Para los Clientes de 'CatalogoEPS', ABSOLUTAMENTE todos los medicamentos tendrán su respectivo costo (toca modificar la tabla de "medicamentos", agregando nuevas columnas)".
+
+
+Aquí te muestro como seria este nuevo flujo:
+
+----
+
+1. "app.py" abrirá primeramente una pagina web estética la cual dará TRES OPCIONES; "Ingresar como Usuario" o "Ingresar como Cliente" o "Ingresar como Empleado"
+
+--
+
+2. SI seleccionan la opción "Ingresar como Usuario"(Ocurre el flujo normal, color principal: Azul oscuro; #074f78):
+
+2.1. Login con modificar contraseña o sección créate..
+
+2.2. Catalogo web con los medicamentos...
+
+2.3. Ver medicamento y envió de medicamento con selección de fechas y generar factura...
+
+2.4. Gestion de usuarios con sección READ, UPDATE Y DETELE +  sección de solicitudes y por ultimo opción de cerrar sesión(aquí el usuario visualiza sus datos y realiza distintas opciones)
+
+-Prácticamente lo que hemos avanzado pero incluyendo nuevas características a los medicamentos (precio).
+
+--
+
+3. SI seleccionan la opción "Ingresar como Cliente"(Flujo similar pero no igual al de "usuario", color principal: Morado; posiblemente #8802a3):
+
+3.1. Login con modificar contraseña o sección créate para CLIENTES..
+
+3.2. Catalogo web con los medicamentos...
+
+3.3. Ver medicamento(incluyendo el atributo "Precio") y envió de medicamento con selección de fechas y generar factura...
+
+3.4. Gestion de cliente con sección READ, UPDATE Y DETELE +  sección de solicitudes y por ultimo opción de cerrar sesión(aquí el cliente visualiza sus datos y realiza distintas opciones)
+
+--
+
+4. SI seleccionan la opción "Ingresar como Empleado"(Flujo similar pero no igual al de "usuario", color principal: Gris; posiblemente #353535):
+
+4.1. Login con modificar contraseña o sección créate para EMPLEADOS..
+
+4.2. Catalogo web con medicamentos + Opción de agregar medicamento(luego se especifica sobre esto) + Opcion de generar reportes(total de clientes(no entendi bien), total de facturas de venta e inventario actual)…
+
+4.3. Ver medicamento + Opción de modificar características del medicamento o eliminar(luego se especifica sobre esto) y envió de medicamento con selección de fechas + Opción de modificar fecha de entrega o eliminar fechas(luego se especifica sobre esto)…
+
+4.4. Gestion de empleados con sección READ, UPDATE Y DETELE + opción de cerrar sesión(aquí el empleado visualiza sus datos y realiza distintas opciones)…
+
+----
+
+Esto seria mas que todo la idea principal ya que el empleado cumplirá su rol(editar características de los medicamentos, stock, agregar o eliminar medicamentos y generar reportes). Como es empleado y no cliente, no podrá realizar distintas funciones del catalogo igual que un usuario y viceversa. Quiero que cumplamos esta idea, esta bien completa. Esto requiere cambio completo a la base de datos agregando las siguientes tablas:
+
+- clientes
+- empleados
+- facturas(unicamente usuarios y clientes)
+
+--
+
+####################################
+
+hasme una sangria de carpetas en base al siguiente enunciado de un proyecto(las carpetas serán marcadas con doble guion "--", los archivos con extensiones y los comentarios con #. No agregues esto a la sangría(excepción de los comentarios), es una indicación para que lo tengas en cuenta):
+
+La carpeta principal se llama --"Proyecto EPS". Esta cuenta con las siguientes carpetas:
+
+--eps_env # Entorno virtual del proyecto
+
+--static -> --css -> -crud/(create.html(#reemplaza "crear_usuario.css"), gestion_account.css(#reemplaza "gestion_usuario.css"), modificar_pin_validar.css).
+     /              /
+     /----> --imagenes -> --medicamentos/(#las doce carpetas de los doce medicamentos y sus respectivas imagenes)
+     /
+     /----> header-icon.png, icon-login-usuario.png, -icono-pestaña.png
+
+
+--templates -> --usuarios -> -crud/(crear_user.html, gestion_user.html, modificar_pin_user.html, modificar_pin_validar_user.html). 
+     /              /
+     /              /------> catalogo_user.html, envio_medicamento_user.html, login_user.html, ver_medicamento_user.html
+     /
+     /
+     /-------> -- clientes -> -crud/(crear_client.html, gestion_client.html, modificar_pin_client.html, modificar_pin_validar_client.html).
+     /	            /
+     /              /------> catalogo_client.html, envio_medicamento_client.html, login_client.html, ver_medicamento_client.html
+     /
+     /
+     /-------> -- empleados -> -crud/(crear_employ.html, gestion_employ.html, modificar_pin_employ.html, modificar_pin_validar_employ.html).
+     /	            /
+     /              /------> catalogo_employ.html, envio_medicamento_employ.html, login_employ.html, ver_medicamento_employ.html
+
+
+
+
+app.py #cerebro del proyecto, aqui tu debes indicarme como debe ir la modularizacion de flask
+
+
+
+
+
+
+

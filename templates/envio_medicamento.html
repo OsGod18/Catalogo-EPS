@@ -38,23 +38,33 @@
         <section class="opciones">
 
             <label class="opcion">
-                <input type="radio" name="fecha_entrega" value="12 Junio" required>
+                <input type="radio" name="fecha_entrega" value="2025-06-12" required>
                 12 Junio
             </label>
 
             <label class="opcion">
-                <input type="radio" name="fecha_entrega" value="14 Junio">
+                <input type="radio" name="fecha_entrega" value="2025-06-14">
                 14 Junio
             </label>
 
             <label class="opcion">
-                <input type="radio" name="fecha_entrega" value="17 Junio">
+                <input type="radio" name="fecha_entrega" value="2025-06-17">
                 17 Junio
             </label>
 
             <label class="opcion">
-                <input type="radio" name="fecha_entrega" value="20 Junio">
+                <input type="radio" name="fecha_entrega" value="2025-06-20">
                 20 Junio
+            </label>
+
+            <label class="opcion">
+                <input type="radio" name="fecha_entrega" value="2025-12-26">
+                26 Diciembre
+            </label>
+
+            <label class="opcion">
+                <input type="radio" name="fecha_entrega" value="2025-05-18">
+                18 Mayo
             </label>
 
         </section>
@@ -69,6 +79,20 @@
         <div id="mensaje" class="mensaje">
             {{ mensaje }}
         </div>
+    {% endif %}
+
+    <br><br>
+
+    {% if mostrar_factura %}
+
+    <form action="{{ url_for('generar_factura', solicitud_id=solicitud_id) }}">
+
+        <button type="submit" id ="boton-pdf">
+            Generar Factura
+        </button>
+
+    </form>
+
     {% endif %}
 
 

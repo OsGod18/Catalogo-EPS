@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title> Inicio </title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/inicio.css') }}">
+
+    <!-- FAVICON -->
+    <link rel="icon" href="{{ url_for('static', filename='imagenes/favicon-inicio.png') }}" type="image/png">
+
+</head>
+
+<body>
+
+    <header>
+
+        <nav id="presentacion">
+            <img src="{{ url_for('static', filename='imagenes/header-icon-inicio.png') }}" alt="Logo" id="icon-header">
+            <h2 id="titulo-header"> Catalogo virtual EPS </h2>
+        </nav>
+
+    </header>
+
+    <main>
+
+        <section class="hero">
+            <div class="card">
+                <div class="card-header">
+                    <img src="{{ url_for('static', filename='imagenes/icon-login-inicio.png') }}" alt="logo" id="icon-login">
+                    <h1>Bienvenido</h1>
+                    <p class="lead">Selecciona tu tipo de acceso</p>
+                </div>
+
+                <div class="card-body">
+                    <a href="{{ url_for('usuarios.login_user') }}" class="btn btn-usuario">Usuario</a>
+                    <a href="{{ url_for('clientes.login_client') }}" class="btn btn-cliente">Cliente</a>
+                    <a href="{{ url_for('empleados.login_employ') }}" class="btn btn-empleado">Empleado</a>
+                </div>
+
+                <div class="card-footer">
+                    <small>Accede con tus credenciales correspondientes</small>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+</body>
+
+</html>

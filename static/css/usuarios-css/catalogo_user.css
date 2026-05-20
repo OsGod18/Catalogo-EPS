@@ -5,6 +5,7 @@ body{
     background-color: #ffffff;
     margin: 0;
     padding: 0;
+    user-select: none;
 }
 
 header {
@@ -116,14 +117,32 @@ main {
 
 
 
-.medicamento:hover .nombre-medicamento {
+.medicamento:hover .nombre-medicamento, .medicamento:hover .sin-imagen {
     color: #000000;
     border-top-color: #000000;
 }
 
 .medicamento:hover .imagen-medicamento {
     box-shadow: 0px 10px 20px #000000; 
-    transform: scale(1.05); 
+    transform: scale(1.08); 
+}
+
+.contenedor-sin-imagen {
+    box-shadow: 2px 2px 10px 2px black;
+    border-radius: 20px;
+    height: 27%;
+    width: 80%;
+    margin: auto;
+    padding: 20px;
+    margin-top: 55px;
+    text-align: center;
+}
+
+.sin-imagen {
+    color: #ffffff;
+    font-family: 'Fira sans', sans-serif;
+    font-size: 40px;
+
 }
 
 

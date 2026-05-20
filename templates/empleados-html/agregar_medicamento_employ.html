@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>
+        Agregar medicamento
+    </title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/empleados-css/agregar_medicamento_employ.css') }}">
+
+    <!-- FAVICON -->
+    <link rel="icon" href="{{ url_for('static', filename='imagenes/favicon-empleado.png') }}" type="image/png">
+
+    <!-- FUENTES -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet"
+    >
+
+</head>
+
+<body>
+
+<header>
+
+    <nav id="presentacion">
+
+        <img src="{{ url_for('static', filename='imagenes/header-icon-empleado.png') }}" alt="" id="icon-header">
+
+        <a href="{{ url_for('empleados.catalogo_employ') }}" id="titulo-header">Regresar</a>
+
+    </nav>
+
+</header>
+
+<br><br><br><br>
+
+<main>
+
+    <section id="contenedor-agregar">
+
+        <h2 class="titulo-seccion">
+            Agregar medicamento
+        </h2>
+
+        <form action="{{ url_for('empleados.agregar_medicamento') }}" method="POST">
+
+            <section class="contenedor-inputs">
+
+                <section class="grupo-input">
+
+                    <p>Nombre medicamento</p>
+
+                    <input type="text" name="nombre_medicamento" required value="{{ request.form.nombre_medicamento or '' }}" id="campo">
+
+                </section>
+
+                <section class="grupo-input">
+
+                    <p>Formula quimica</p>
+
+                    <input type="text" name="formula_quimica" required value="{{ request.form.formula_quimica or '' }}" id="campo">
+
+                </section>
+
+            </section>
+
+            <section class="contenedor-inputs">
+
+                <section class="grupo-input">
+
+                    <p>Cantidad pastas</p>
+
+                    <input type="text" name="cantidad_pastas" required value="{{ request.form.cantidad_pastas or '' }}" id="campo">
+
+                </section>
+
+                <section class="grupo-input">
+
+                    <p>Precio</p>
+
+                    <input type="text" inputmode="numeric" name="precio" required value="{{ request.form.precio or '' }}" id="campo">
+
+                </section>
+
+            </section>
+
+            <section class="contenedor-inputs">
+
+                <section class="grupo-input">
+
+                    <p>Incluido PBS</p>
+
+                    <select name="incluido_pbs" id="campo">
+
+                        <option value="1">Si</option>
+
+                        <option value="0">No</option>
+
+                    </select>
+
+                </section>
+
+                <section class="grupo-input">
+
+                    <p>Stock</p>
+
+                    <input type="text" inputmode="numeric" name="stock" required value="{{ request.form.stock or '' }}" id="campo">
+
+                </section>
+
+            </section>
+
+            <section class="grupo-input">
+
+                <p>Descripcion medicamento</p>
+
+                <textarea name="descripcion_medicamento" required id="campo-textarea">{{ request.form.descripcion_medicamento or '' }}</textarea>
+
+            </section>
+
+            <br>
+
+            <p class="mensaje-error">{{ error }}</p>
+
+            <p class="mensaje-exito">{{ mensaje }}</p>
+
+            <button type="submit" id="boton-agregar">
+                Agregar medicamento
+            </button>
+
+        </form>
+
+    </section>
+
+</main>
+
+</body>
+
+</html>

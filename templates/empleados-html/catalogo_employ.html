@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>
+        Catalogo
+    </title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/empleados-css/catalogo_employ.css') }}">
+
+    <!--<link rel="stylesheet" href="../../static/css/empleados-css/catalogo_employ.css">-->
+
+    <!-- FAVICON -->
+    <link rel="icon" href="{{ url_for('static', filename='imagenes/favicon-empleado.png') }}" type="image/png">
+
+    <!-- FUENTES -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet"
+    >
+
+</head>
+
+<body>
+
+<header>
+
+    <nav class="presentacion">
+
+        <img src="{{ url_for('static', filename='imagenes/header-icon-empleado.png') }}" alt="" class="icon-header">
+
+        <h2 id="titulo-header">Catalogo virtual EPS</h2>
+
+    </nav>
+    
+    <nav class="presentacion">
+
+        <a href="{{ url_for('empleados.gestion_empleado') }}" id="usuario">{{ usuario }}</a>
+
+        <img src="{{ url_for('static', filename='imagenes/icon-login-empleado.png') }}" alt="" class="icon-header">
+
+    </nav>
+
+</header>
+
+<br><br>
+
+<h2 class="bienvenida">Medicamentos disponibles</h2>
+
+<br><br><br>
+
+<div id="contenedor-secciones">
+
+    <a href="{{ url_for('empleados.agregar_medicamento_employ') }}" class="boton-seccion">Agregar medicamento</a>
+
+    <a href="{{ url_for('empleados.envio_medicamento_employ') }}" class="boton-seccion">Modificar fechas de envio</a>
+
+</div>
+
+<main>
+
+    <section class="fila-medicamentos">
+
+        {% for medicamento in medicamentos %}
+
+        <nav class="medicamento">
+
+            {% if medicamento.imagen_card == "sin-imagen.png" %}
+                <div class="contenedor-sin-imagen">
+                    <h1 class="sin-imagen">Sin imagen</h1>
+                </div>
+            {% else %}
+
+            <img src="{{ url_for('static', filename='imagenes/medicamentos/' ~ medicamento.nombre_medicamento ~ '/' ~ medicamento.imagen_card) }}" class="imagen-medicamento">
+
+            {% endif %}
+            <a class="nombre-medicamento" href="{{ url_for('empleados.ver_medicamento_employ', id=medicamento.id) }}">
+                {{ medicamento.nombre_medicamento }}
+            </a>
+
+            <p class="
+                {% if medicamento.stock > 500 %}
+                    cantidad-mayor-500
+                {% elif medicamento.stock > 200 %}
+                    cantidad-menor-500
+                {% else %}
+                    cantidad-menor-200
+                {% endif %}
+            ">
+                {{ medicamento.stock }}
+            </p>
+
+            <p id="precio-medicamento">
+                $ {{ "{:,.0f}".format(medicamento.precio).replace(",", ".") }}
+            </p>
+
+        </nav>
+
+        {% endfor %}
+
+    </section>
+
+    <br><br><br>
+
+    <!-- REPORTES -->
+
+    <section id="contenedor-reportes">
+
+        <h2 class="titulo-seccion">Reportes del sistema</h2>
+
+        <section class="contenedor-botones-reportes">
+
+            <form action="{{ url_for('empleados.reporte_inventario') }}" method="GET">
+
+                <button type="submit" class="boton-reporte">
+                    Inventario actual
+                </button>
+
+            </form>
+
+            <form action="{{ url_for('empleados.reporte_clientes') }}" method="GET">
+
+                <button type="submit" class="boton-reporte">
+                    Clientes registrados
+                </button>
+
+            </form>
+
+            <form action="{{ url_for('empleados.reporte_facturas') }}" method="GET">
+
+                <button type="submit" class="boton-reporte">
+                    Total facturas
+                </button>
+
+            </form>
+
+        </section>
+
+    </section>
+
+</main>
+
+</body>
+
+</html>

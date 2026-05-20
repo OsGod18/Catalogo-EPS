@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Login Empleado</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/empleados-css/login_employ.css') }}">
+
+    <link rel="icon" href="{{ url_for('static', filename='imagenes/favicon-empleado.png') }}" type="image/png">
+    
+    <!--Infografia:-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+<header>
+
+    <nav id="presentacion">
+
+        <img src="{{ url_for('static', filename='imagenes/header-icon-empleado.png') }}" alt="" id="icon-header">
+
+        <a href="{{ url_for('inicio') }}" id="titulo-header">Regresar a Inicio</a>
+
+    </nav>
+
+</header>
+
+<main>
+
+    <h1>Ingresa al catalogo virtual</h1>
+
+    <br>
+
+    <form action="{{ url_for('empleados.login_employ') }}" method="POST">
+
+        <p>ID de empleado</p>
+
+        <input type="text" name="id_empleado" placeholder="Ingresa tu id de empleado" required minlength="4" maxlength="4" inputmode="numeric" id="ingresar_datos_campo">
+
+        <p>Contraseña</p>
+
+        <input type="password" name="contrasena" placeholder="Ingresa tu contraseña" required minlength="4" maxlength="10" id="ingresar_datos_campo">
+
+        <br><br>
+
+        <p class="mensaje_error">{{ error }}</p>
+
+        <input type="submit" value="Ingresar" id="boton-enviar">
+
+        <nav id="contenedor-opciones-seguridad">
+
+            <a class="opcion-seguridad" href="{{ url_for('empleados.crear_employ') }}">No me encuentro registrado</a>
+
+            <a class="opcion-seguridad" href="{{ url_for('empleados.modificar_pin_validar_employ') }}">Olvide mi contraseña</a>
+
+        </nav>
+
+    </form>
+
+</main>
+
+</body>
+</html>

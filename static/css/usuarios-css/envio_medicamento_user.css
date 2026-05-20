@@ -1,0 +1,292 @@
+/* --- RESET Y CUERPO --- */
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: whitesmoke;
+    min-height: 100vh;
+}
+
+/* --- ENCABEZADO --- */
+
+header {
+    background-color: #074f78;
+    width: 100%;
+    height: 80px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+#presentacion {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: #ffffff;
+    padding: 0 20px;
+    text-shadow: 1px 1px #000000;
+}
+
+#icon-header {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    box-shadow: 1px 1px 10px 1px #ffffff;
+    transition: box-shadow 0.8s ease;
+}
+
+#titulo-header {
+    color: #ffffff;
+    text-decoration: none;
+    text-shadow: 2px 2px #000000;
+    font-family: "Fira sans", sans-serif;
+}
+
+/* --- CONTENEDOR PRINCIPAL --- */
+
+main {
+    margin: 120px auto 40px auto; 
+    width: 90%; 
+    max-width: 600px; 
+    background: #074f78;
+    padding: 30px;
+    border-radius: 20px;
+    text-align: center;
+    color: white;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+    box-sizing: border-box; 
+}
+
+.titulo {
+    font-family: "Fira sans", sans-serif;
+    font-size: clamp(1.4rem, 5vw, 1.8rem);
+    margin-bottom: 30px;
+}
+
+/* --- GRID DE OPCIONES --- */
+
+.opciones {
+    display: grid;
+    /* 1 columna en móvil, 2 en pantallas más grandes */
+    grid-template-columns: 1fr; 
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.opcion {
+    background: white;
+    color: #074f78;
+    padding: 15px;
+    border-radius: 14px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.25s ease;
+    border: 2px solid transparent;
+    font-size: 1rem;
+}
+
+.opcion:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+}
+
+.opcion.seleccionada {
+    background: #052c44;
+    border: 2px solid #52B788;
+    color: #ffffff;
+}
+
+/* --- BOTONES --- */
+
+.boton, #boton-pdf {
+    width: 100%; /* Botones ocupan todo el ancho en móvil */
+    max-width: 250px; /* Pero no crecen de más en PC */
+    padding: 14px;
+    margin: 10px 5px;
+    border: none;
+    border-radius: 12px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.boton { background: #52B788; color: white; }
+#boton-pdf { background: #E63946; color: white; }
+
+.boton:hover, #boton-pdf:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 10px rgba(255,255,255,0.3);
+}
+
+/* --- MEDIA QUERIES (Ajustes para PC) --- */
+
+@media (min-width: 600px) {
+    .opciones {
+        grid-template-columns: 1fr 1fr; /* Volver a 2 columnas */
+    }
+    
+    .boton, #boton-pdf {
+        width: auto; /* Ancho automático en pantallas grandes */
+    }
+}
+
+/* --- ANIMACIONES --- */
+
+.mensaje {
+    margin-top: 25px;
+    background: #52B788;
+    padding: 15px;
+    border-radius: 10px;
+    font-weight: bold;
+    opacity: 0;
+    animation: fadeIn 0.5s ease forwards;
+}
+
+@keyframes fadeIn {
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ================================= */
+/*         RESPONSIVE DESIGN         */
+/* ================================= */
+
+
+/* -------- TABLETS -------- */
+@media (max-width: 992px){
+
+    main{
+        width: 92%;
+        padding: 25px;
+    }
+
+    .titulo{
+        font-size: 1.6rem;
+    }
+
+    .opcion{
+        font-size: 0.95rem;
+        padding: 14px;
+    }
+
+}
+
+
+/* -------- CELULARES -------- */
+@media (max-width: 768px){
+
+    header{
+        height: auto;
+        padding: 10px 0;
+    }
+
+    #presentacion{
+        flex-direction: column;
+        gap: 8px;
+        text-align: center;
+    }
+
+    #icon-header{
+        width: 45px;
+        height: 45px;
+    }
+
+    #titulo-header h2{
+        font-size: 22px;
+        margin: 0;
+    }
+
+    main{
+        margin-top: 150px;
+        width: 95%;
+        padding: 20px;
+        border-radius: 16px;
+    }
+
+    .titulo{
+        font-size: 1.4rem;
+        line-height: 1.4;
+        margin-bottom: 25px;
+    }
+
+    .opciones{
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .opcion{
+        padding: 14px;
+        font-size: 0.95rem;
+    }
+
+    .boton,
+    #boton-pdf{
+        width: 100%;
+        max-width: 100%;
+        font-size: 17px;
+        padding: 13px;
+        margin: 8px 0;
+    }
+
+    .mensaje{
+        font-size: 0.95rem;
+        padding: 14px;
+    }
+
+}
+
+
+/* -------- CELULARES PEQUEÑOS -------- */
+@media (max-width: 480px){
+
+    body{
+        overflow-x: hidden;
+    }
+
+    #presentacion{
+        padding: 0 10px;
+    }
+
+    #icon-header{
+        width: 40px;
+        height: 40px;
+    }
+
+    #titulo-header h2{
+        font-size: 18px;
+    }
+
+    main{
+        margin-top: 145px;
+        width: 96%;
+        padding: 15px;
+    }
+
+    .titulo{
+        font-size: 1.2rem;
+    }
+
+    .opcion{
+        font-size: 0.9rem;
+        padding: 12px;
+        border-radius: 12px;
+    }
+
+    .boton,
+    #boton-pdf{
+        font-size: 16px;
+        padding: 12px;
+        border-radius: 10px;
+    }
+
+    .mensaje{
+        font-size: 0.9rem;
+    }
+
+}

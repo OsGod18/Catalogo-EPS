@@ -2,10 +2,14 @@
 
 body{
     background-color: #ffffff;
+    user-select: none;
 }
 
 header {
-    background-color: #074f78;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: #600392;
     width: 100%;
     height: 80px;
     overflow: hidden;
@@ -45,6 +49,29 @@ header {
     font-family: "Fira sans", sans-serif;
 }
 
+#div-saldo {
+    margin-top: 0px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+#saldo {
+    font-size: 24px;
+    height: 25px;
+    border: none;
+    border-radius: 10px;
+    padding: 5px; 
+    color: #FFD700; 
+    font-family: "Fira sans", sans-serif;
+}
+
+#texto-saldo {
+    font-size: 20px;
+    color: #ffffff;
+    font-family: 'Fira sans', sans-serif;
+}
+
 
 /*Modificando parte principal*/
 
@@ -57,7 +84,7 @@ body{
 /* Header */
 
 .header{
-    background:#074f78;
+    background:#600392;
     color:white;
     text-align:center;
     padding:20px;
@@ -72,8 +99,7 @@ main{
     margin-top: 200px;
     width:500px;
     margin-left: 500px;
-
-    background:#074f78;
+    background:#600392;
     padding:40px;
     border-radius:20px;
     text-align:center;
@@ -100,7 +126,7 @@ main{
 
 .opcion{
     background:white;
-    color:#074f78;
+    color:#600392;
     padding:18px;
     border-radius:14px;
     cursor:pointer;
@@ -121,7 +147,7 @@ main{
 }
 
 .opcion.seleccionada{
-    background:#052c44;
+    background:#33014f;
     border:2px solid #52B788;
     color:#ffffff;
     box-shadow:0 0 15px rgba(82,183,136,0.6);
@@ -187,5 +213,101 @@ main{
     to{
         opacity:1;
         transform:translateY(0);
+    }
+}
+
+
+/* --- CONFIGURACIÓN RESPONSIVE --- */
+
+/* Ajuste general para evitar desbordamientos */
+main {
+    max-width: 90%; /* Evita que el contenedor toque los bordes en móviles */
+    width: 500px;   /* Ancho máximo en pantallas grandes */
+    margin-left: auto !important;  /* Centra el contenedor horizontalmente */
+    margin-right: auto !important; /* Centra el contenedor horizontalmente */
+}
+
+/* Ajustes para Tablets (Pantallas menores a 1024px) */
+@media (max-width: 1024px) {
+    main {
+        margin-top: 150px;
+        padding: 30px;
+    }
+}
+
+/* Ajustes para Celulares (Pantallas menores a 768px) */
+@media (max-width: 768px) {
+    header {
+        height: auto;
+        flex-direction: column;
+        padding: 15px 0;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    #presentacion {
+        margin-top: 0;
+        gap: 10px;
+    }
+
+    #icon-header {
+        width: 45px;
+        height: 45px;
+    }
+
+    #titulo-header {
+        font-size: 18px;
+    }
+
+    #div-saldo {
+        gap: 10px;
+    }
+
+    #saldo {
+        font-size: 18px;
+    }
+
+    #texto-saldo {
+        font-size: 16px;
+    }
+
+    main {
+        margin-top: 180px; /* Espacio para el header colapsado */
+        width: 85%;
+        padding: 20px;
+    }
+
+    .titulo {
+        font-size: 22px;
+    }
+
+    .opciones {
+        grid-template-columns: 1fr; /* Una opción por fila en móviles */
+        gap: 15px;
+    }
+
+    .opcion {
+        padding: 15px;
+    }
+
+    .boton, #boton-pdf {
+        width: 100%; /* Botones a lo ancho del contenedor */
+        padding: 14px 0;
+        margin-bottom: 10px;
+    }
+}
+
+/* Ajustes para pantallas muy pequeñas (Menos de 400px) */
+@media (max-width: 400px) {
+    header {
+        border-radius: 0; /* Estética más limpia en pantallas pequeñas */
+    }
+    
+    .titulo {
+        font-size: 18px;
+    }
+    
+    #titulo-header {
+        font-size: 16px;
     }
 }

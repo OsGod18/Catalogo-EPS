@@ -1,0 +1,386 @@
+
+/*        ENCABEZADO             */
+
+body{
+    background-color: #ffffff;
+    margin: 0;
+    padding: 0;
+    user-select: none;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    background-color: #600392;
+    width: 100%;
+    height: 80px;
+    overflow: hidden;
+    border-radius: 10px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.presentacion{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 40px;
+    margin-left: 40px;
+    gap: 20px;
+    color: #ffffff;
+    text-shadow: 1px 1px #000000;
+}
+
+#div-saldo {
+    margin-top: 0px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+#saldo {
+    font-size: 24px;
+    height: 25px;
+    border: none;
+    border-radius: 10px;
+    padding: 5px; 
+    color: #FFD700; 
+    font-family: "Fira sans", sans-serif;
+}
+
+#texto-saldo {
+    font-size: 20px;
+    color: #ffffff;
+    font-family: 'Fira sans', sans-serif;
+}
+
+#usuario {
+    color: #ffffff;
+    font-size: 22px;
+    text-decoration: none;
+    text-shadow: 1px 1px #000000;
+    font-family: 'Fira sans', sans-serif;
+}
+
+.anuncio-empleo {
+    width: calc(100% - 80px);
+    margin: 10px auto 0;
+    padding: 18px 22px;
+    background: linear-gradient(135deg, #9304e0 0%, #2b0142 100%);
+    border-radius: 18px;
+    box-shadow: 0 16px 40px #600392;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    color: #ffffff;
+    border: 2px solid rgba(255, 255, 255, 0.28);
+    animation: pulseGlow 4s ease-in-out infinite;
+}
+
+.anuncio-empleo #texto-anuncio {
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.5;
+    max-width: 75%;
+    font-family: 'Fira sans', sans-serif;
+}
+
+.boton-empleo {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffffff;
+    color: #a805ff;
+    padding: 14px 28px;
+    border-radius: 999px;
+    font-weight: 700;
+    box-shadow: 0 10px 24px #60039292;
+    text-decoration: none;
+    font-family: 'Fira sans', sans-serif;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
+}
+
+.boton-empleo:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 32px #600392;
+    background-color: #f5d6ff;
+}
+
+@keyframes pulseGlow {
+    0%, 100% { box-shadow: 0 16px 40px #000000; }
+    50% { box-shadow: 0 16px 50px #600392; }
+}
+
+.icon-header {
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    box-shadow: 1px 1px 10px 1px #ffffff;
+    transition: box-shadow 0.8s ease;
+}
+
+.icon-header:hover{
+    box-shadow: 1px 1px 10px 1px #000000;
+}
+
+#titulo-header {
+    text-shadow: 2px 2px #000000;
+    font-family: "Fira sans", sans-serif;
+}
+
+/*TITULO*/
+
+.bienvenida{
+    margin: auto;
+    background-color: #600392;
+    padding: 20px;
+    width: 30%;
+    border-radius: 20px;
+    text-align:center;
+    font-size:30px;
+    color:white;
+    margin-top:100px;
+    font-family:"Fira Sans", sans-serif;
+}
+
+/*MAIN*/
+
+main {
+    margin: 0;
+    padding: 80px 20px 20px 20px; 
+}
+
+
+
+.fila-medicamentos {
+    display: flex;
+    gap: 90px;
+    margin-top: 50px;
+    padding: 20px 40px;
+    justify-content: center;
+    flex-wrap: wrap;
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+
+.medicamento {
+    background-color: #600392;
+    box-shadow: 2px 2px 10px 2px #600392;
+    border-radius: 10px;
+    height: 420px;
+    width: 310px;
+    padding: 20px;
+    text-align: center;
+    transition: all 0.8s ease;
+}
+
+.medicamento:hover {
+    background-color: #e7e7e7;
+    box-shadow: 3px 3px 10px 3px #000000;
+    height: 430px;
+    width: 330px;
+    color: #000000;
+}
+
+
+
+.medicamento:hover .nombre-medicamento, .medicamento:hover .sin-imagen {
+    color: #000000;
+    border-top-color: #000000;
+}
+
+.medicamento:hover .imagen-medicamento {
+    box-shadow: 0px 10px 20px #000000; 
+    transform: scale(1.08); 
+}
+
+.contenedor-sin-imagen {
+    box-shadow: 2px 2px 10px 2px black;
+    border-radius: 20px;
+    height: 27%;
+    width: 80%;
+    margin: auto;
+    padding: 20px;
+    margin-top: 55px;
+    text-align: center;
+}
+
+.sin-imagen {
+    color: #ffffff;
+    font-family: 'Fira sans', sans-serif;
+    font-size: 40px;
+
+}
+
+
+
+.imagen-medicamento {
+    width: 280px;
+    border-radius: 20px;
+    margin-top: 50px;
+    box-shadow: 2px 2px 10px 2px black;
+    transition: all 0.8s ease;
+}
+
+.nombre-medicamento {
+    color: whitesmoke;
+    font-family: 'Fira sans', sans-serif;
+    text-decoration: none;
+    font-size: 35px;
+    display: inline-block;
+    width: 100%;
+    margin-top: 45px;
+    border-top: solid;
+    border-bottom: solid;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+/*STOCK*/
+
+.cantidad-mayor-500,
+.cantidad-menor-500,
+.cantidad-menor-200 {
+    color: whitesmoke;
+    font-family: 'Fira sans', sans-serif;
+    border-radius: 20px;
+    width: 200px;
+    margin: 15px auto;
+    display: block;
+    text-align: center;
+}
+
+/* COLORES */
+
+.cantidad-mayor-500 {
+    background-color: #52B788;
+    border: solid #52B788;
+}
+
+.cantidad-menor-500 {
+    background-color: #d2c000;
+    border: solid #d2c000;
+}
+
+.cantidad-menor-200 {
+    background-color: #E63946;
+    border: solid #E63946;
+}
+
+#precio-medicamento {
+    color: #FFD700;
+    font-family: 'Fira sans', sans-serif;
+    background-color: #1f1f1f;
+    border-radius: 20px;
+    padding: 10px;
+    width: 200px;
+    margin: 10px auto;
+    display: block;
+    text-align: center;
+}
+
+/* --- RESPONSIVE DESIGN --- */
+
+/* Ajustes para Laptops y Tablets Grandes (menos de 1200px) */
+@media (max-width: 1200px) {
+    .bienvenida {
+        width: 50%;
+        font-size: 26px;
+    }
+    
+    .fila-medicamentos {
+        gap: 40px;
+    }
+}
+
+/* Ajustes para Tablets (menos de 768px) */
+@media (max-width: 768px) {
+    header {
+        height: auto;
+        flex-direction: column;
+        padding: 10px 0;
+    }
+
+    .presentacion {
+        margin: 5px 0;
+        gap: 10px;
+    }
+
+    #div-saldo {
+        justify-content: center;
+        margin-bottom: 10px;
+    }
+
+    .bienvenida {
+        width: 80%;
+        margin-top: 180px; /* Aumentado para no chocar con el header expandido */
+        font-size: 22px;
+    }
+
+    main {
+        padding-top: 20px;
+    }
+
+    .fila-medicamentos {
+        padding: 10px;
+        gap: 30px;
+    }
+
+    .medicamento {
+        width: 280px;
+        height: auto;
+        padding-bottom: 30px;
+    }
+
+    .medicamento:hover {
+        width: 290px;
+        height: auto;
+    }
+
+    .imagen-medicamento {
+        width: 100%;
+        max-width: 240px;
+    }
+
+    .nombre-medicamento {
+        font-size: 28px;
+    }
+}
+
+/* Ajustes para Celulares (menos de 480px) */
+@media (max-width: 480px) {
+    #titulo-header {
+        font-size: 18px;
+    }
+
+    #usuario, #texto-saldo, #saldo {
+        font-size: 16px;
+    }
+
+    .icon-header {
+        width: 40px;
+        height: 40px;
+    }
+
+    .bienvenida {
+        width: 90%;
+        font-size: 18px;
+        padding: 15px;
+    }
+
+    .medicamento {
+        width: 100%; /* El card ocupa casi todo el ancho del celular */
+        max-width: 310px;
+    }
+
+    .nombre-medicamento {
+        font-size: 24px;
+        margin-top: 30px;
+    }
+}
